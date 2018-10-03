@@ -18,7 +18,7 @@ void catch_SIGUSR1(int signal_number)
 
 int main(void)
 {
-    signal(SIGUSR1, catch_SIGINT);
+    signal(SIGUSR1, catch_SIGUSR1);
     while (1)
     {
         printf("Dzialam dalej...\n");
