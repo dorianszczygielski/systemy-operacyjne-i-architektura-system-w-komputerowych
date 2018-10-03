@@ -14,14 +14,14 @@ int main (void) {
 
    signal(SIGINT, catch_SIGINT);
 
-   printf("Wysylam sygnal...\n");
+   puts("Wysylam sygnal...\n");
    raise(SIGINT);
 
-   printf("Wychodze...\n");
+   puts("Wychodze...\n");
 
    return(0);
 }
 
 void catch_SIGINT(int signal_number) {
-   printf("Przechwycilem sygnal!\n");
+   puts("Przechwycilem sygnal!\n");
 }
