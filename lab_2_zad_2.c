@@ -14,13 +14,13 @@
 
 void catch_SIGUSR1(int signal)
 {
-        printf("Parent: Cought signal %d!\n",signal);
+        printf("Parent: Cought signal %d!\n", signal);
         wait(0);
 }
 
 int main(void)
 {
-        signal(SIGUSR1,catch_SIGUSR1);
+        signal(SIGUSR1, catch_SIGUSR1);
 
         if (!fork()) {
                 printf("Child running...\n");
@@ -31,7 +31,7 @@ int main(void)
                 printf("Child exitting...\n");
                 return 0;
         }
-        printf("Parent running, PID=%d. Press ENTER to exit.\n",getpid());
+        printf("Parent running, PID=%d. Press ENTER to exit.\n", getpid());
         getchar();
         printf("Parent exitting...\n");
         return 0;
