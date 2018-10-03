@@ -7,21 +7,32 @@
 */
 
 #include <stdio.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 #include <signal.h>
-void catch_SIGINT(int signal_number);
+#include <unistd.h>
 
-int main (void) {
-
-   signal(SIGINT, catch_SIGINT);
-
-   puts("Wysylam sygnal...\n");
-   raise(SIGINT);
-
-   puts("Wychodze...\n");
-
-   return(0);
+void catch_SIGUSR1(int signal)
+{
+        printf("Parent: Cought signal %d!\n",signal);
+        wait(0);
 }
 
-void catch_SIGINT(int signal_number) {
-   puts("Przechwycilem sygnal!\n");
+int main(void)
+{
+        signal(SIGUSR1,catch_SIGUSR1);
+
+        if (!fork()) {
+                printf("Child running...\n");
+                sleep(2);
+                printf("Child sending SIGUSR1...\n");
+                kill(getppid(),SIGUSR1);
+                sleep(5);
+                printf("Child exitting...\n");
+                return 0;
+        }
+        printf("Parent running, PID=%d. Press ENTER to exit.\n",getpid());
+        getchar();
+        printf("Parent exitting...\n");
+        return 0;
 }
