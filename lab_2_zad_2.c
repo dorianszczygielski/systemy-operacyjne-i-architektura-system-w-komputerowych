@@ -26,7 +26,7 @@ int main(void)
                 printf("Child running...\n");
                 sleep(2);
                 printf("Child sending SIGUSR1...\n");
-                kill(getppid(),SIGUSR1);
+                kill(getppid(), SIGUSR1);
                 sleep(5);
                 printf("Child exitting...\n");
                 return 0;
