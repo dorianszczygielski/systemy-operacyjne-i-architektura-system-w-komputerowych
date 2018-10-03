@@ -1,7 +1,7 @@
 /*
 
-	© Dorian Szczygielski / Zachodniopomorski Uniwersytet Technologiczny w Szczecinie / Wydzia≥ Elektryczny
-	Systemy operacyjne i architektura systemÛw komputerowych
+	≈† Dorian Szczygielski / Zachodniopomorski Uniwersytet Technologiczny w Szczecinie / Wydzia≈Ç Elektryczny
+	Systemy operacyjne i architektura system√≥w komputerowych
 	lab_2 / zadanie_1
 
 */
@@ -11,14 +11,14 @@
 #include <signal.h>
 #include <unistd.h>
 
-void catch_SIGINT(int signal_number)
+void catch_SIGUSR1(int signal_number)
 {
   printf( "Przechwycilem sygnal!\n" );
 }
 
 int main(void)
 {
-    signal(SIGINT, catch_SIGINT);
+    signal(SIGUSR1, catch_SIGINT);
     while (1)
     {
         printf("Dzialam dalej...\n");
