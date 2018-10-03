@@ -31,6 +31,10 @@ int main(void)
                 printf("CHILD: I'm exitting...\n");
                 return 0;
         }
+	if (fork() < 0) {
+	    perror("Error Fork");
+	    exit(1);
+	}
         printf("PARENT: I'm running, PID=%d. Press ENTER to exit.\n", getpid());
         getchar();
         printf("PARENT: I'm exitting...\n");
