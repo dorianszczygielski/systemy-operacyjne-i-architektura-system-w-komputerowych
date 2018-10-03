@@ -7,14 +7,14 @@
 */
 
 #include <stdio.h>
+#include <signal.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <signal.h>
 #include <unistd.h>
 
 void catch_SIGUSR1(int signal)
 {
-        printf("Parent: Cought signal %d!\n", signal);
+        printf("PARENT: I recived signal number %d!\n", signal);
         wait(0);
 }
 
@@ -23,16 +23,16 @@ int main(void)
         signal(SIGUSR1, catch_SIGUSR1);
 
         if (!fork()) {
-                printf("Child running...\n");
+                printf("CHILD: I'm running...\n");
                 sleep(2);
-                printf("Child sending SIGUSR1...\n");
+                printf("CHILD: I'm sending SIGUSR1...\n");
                 kill(getppid(), SIGUSR1);
                 sleep(5);
-                printf("Child exitting...\n");
+                printf("CHILD: I'm exitting...\n");
                 return 0;
         }
-        printf("Parent running, PID=%d. Press ENTER to exit.\n", getpid());
+        printf("PARENT: I'm running, PID=%d. Press ENTER to exit.\n", getpid());
         getchar();
-        printf("Parent exitting...\n");
-        return 0;
+        printf("PARENT: I'm exitting...\n");
+  return 0;
 }
