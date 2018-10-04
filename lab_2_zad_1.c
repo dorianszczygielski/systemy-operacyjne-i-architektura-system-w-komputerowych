@@ -10,16 +10,17 @@
 #include <sys/types.h>
 #include <signal.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 void catch_SIGUSR1(int signal_number)
 {
-  printf( "Przechwycilem sygnal!\n" );
+  printf("Przechwycilem sygnal!\n" );
 }
 
 int main(void)
 {
     signal(SIGUSR1, catch_SIGUSR1);
-    while (1)
+    while (true)
     {
         printf("Dzialam dalej...\n");
         sleep(10);
