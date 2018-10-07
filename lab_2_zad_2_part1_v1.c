@@ -1,3 +1,10 @@
+
+/*
+	© Dorian Szczygielski / Zachodniopomorski Uniwersytet Technologiczny w Szczecinie / Wydział Elektryczny
+	Systemy operacyjne i architektura systemów komputerowych
+	lab_2 / zadanie_2
+*/
+
 #include <stdio.h>
 #include <signal.h>
 #include <stdbool.h>
