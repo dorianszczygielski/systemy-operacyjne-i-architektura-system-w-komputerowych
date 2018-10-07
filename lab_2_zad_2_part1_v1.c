@@ -16,7 +16,7 @@ void signalInfo() {
 int main(void) {
 
 	int pid;
-	printf("Signal PID: ");
+	printf("Number PID of signal: ");
 	scanf("%d", &pid);
 	
 	kill(pid, SIGUSR1);
