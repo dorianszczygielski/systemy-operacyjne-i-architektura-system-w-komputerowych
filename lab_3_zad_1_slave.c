@@ -28,7 +28,7 @@ int main()
     msgrcv(msgid, &message, sizeof(message), 1, 0);
 
     // display the message
-    printf("Data Received is: %s \n", message.mesg_text);
+    printf("I received the message: %s \n", message.mesg_text);
 
     // to destroy the message queue
     // IPC_RMID - Mark the segment to be destroyed
