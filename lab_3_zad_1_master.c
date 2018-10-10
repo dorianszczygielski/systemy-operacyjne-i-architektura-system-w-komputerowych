@@ -5,7 +5,7 @@
 // structure for message queue
 struct mesg_buffer {
     long mesg_type;
-    char mesg_text[100];
+    char mesg_text[255];
 } message;
 
 int main()
@@ -13,8 +13,9 @@ int main()
     key_t key;
     int msgid;
 
+    //convert a pathname and a project identifier to a System V IPC
     // ftok to generate unique key
-    key = ftok("progfile", 65);
+    key = ftok("uniquename", 66);
 
     // msgget creates a message queue
     // and returns identifier
@@ -22,13 +23,13 @@ int main()
     message.mesg_type = 1;
 
     printf("Your message: ");
-    gets(message.mesg_text);
+    fgets(message.mesg_text, 255, stdin);
 
     // msgsnd to send message
     msgsnd(msgid, &message, sizeof(message), 0);
 
     // display the message
-    printf("Data send is: %s \n", message.mesg_text);
+    printf("I sent a message: %s", message.mesg_text);
 
     return 0;
 }
